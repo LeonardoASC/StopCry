@@ -14,7 +14,6 @@ export function Login({ navigation }: Props) {
     return (
         <SafeAreaView className="flex-1 items-center justify-center bg-[#121212] p-4">
             <Text className="text-white text-2xl font-bold mb-6">Login to StopCry</Text>
-
             <TextInput 
                 className="text-white bg-[#404040] w-full mb-4 p-3 rounded-lg"
                 placeholder="Email"
@@ -38,11 +37,11 @@ export function Login({ navigation }: Props) {
             </TouchableOpacity>
 
             <View className="flex-row justify-between w-full">
-                <TouchableOpacity onPress={() => { /* Navegação para Cadastro */ }}>
+                <TouchableOpacity onPress={() => { }}>
                     <Text className="text-[#1DB954] mb-4">Ainda não é usuário?</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => { /* Navegação para Recuperação de Senha */ }}>
+                <TouchableOpacity onPress={() => {  }}>
                     <Text className="text-[#1DB954] mb-4">Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>

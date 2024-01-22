@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { SafeAreaView, ScrollView, View, Dimensions, TouchableOpacity, Text, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
 import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigationTypes';
 
 import { CarouselScreen } from './CarouselScreen';
+import { CarouselScreenTwo } from './CarouselScreenTwo';
+import { CarouselScreenThree } from './CarouselScreenThree';
 
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Login'>;
 };
+
 export function Presentation({ navigation }: Props) {
 
     const [currentPage, setCurrentPage] = useState(0);
+    const scrollViewRef = useRef(null);
 
     const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const scrollPosition = event.nativeEvent.contentOffset.x;
@@ -53,18 +57,12 @@ export function Presentation({ navigation }: Props) {
                 scrollEventThrottle={16}
                 showsHorizontalScrollIndicator={false}
             >
-                <CarouselScreen title="Bem-vindo ao App!" backgroundColor="#FFD700" />
-                <CarouselScreen title="Explore os recursos." backgroundColor="#ADD8E6" />
-                <CarouselScreen title="Comece a usar agora!" backgroundColor="#90EE90">
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Login')}
-                        style={{ padding: 10, marginTop: 20, backgroundColor: 'blue', borderRadius: 5 }}
-                    >
-                        <Text style={{ color: 'white', textAlign: 'center' }}>Ir para o Login</Text>
-                    </TouchableOpacity>
-                </CarouselScreen>
+                <CarouselScreen  />
+                <CarouselScreenTwo />
+                <CarouselScreenThree navigation={navigation}/>
+
             </ScrollView>
-            <View className="absolute bottom-4 left-0 right-0 flex flex-row justify-center">
+            <View className="absolute bottom-4 left-0 right-0 flex flex-row justify-center  ">
                 {renderPageIndicators()}
             </View>
 

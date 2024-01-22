@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Text, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 const ScreenWidth = Dimensions.get('window').width;
+
 
 
 const Screen = styled.View`
@@ -10,16 +11,15 @@ const Screen = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: #1DB954;
+ 
 `;
 
 
 
-export function CarouselScreen() {
+export function CarouselScreenTwo() {
   return (
-    <Screen>
-      
-      <Text>Bem-Vindo ao App!</Text>
+    <Screen >
+      <Text>oi</Text>
       
     </Screen>
   );
