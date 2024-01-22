@@ -21,6 +21,7 @@ export function Login({ navigation }: Props) {
                 onChangeText={setEmail}
                 value={email}
                 keyboardType="email-address"
+                
             />
 
             <TextInput 

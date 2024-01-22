@@ -12,7 +12,7 @@ const Screen = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  
+  background-color: #1DB954;
 `;
 
 type Props = {
