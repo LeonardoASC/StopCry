@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { SafeAreaView, ScrollView, View, Dimensions, TouchableOpacity, Text, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigationTypes';
@@ -50,7 +51,7 @@ export function Presentation({ navigation }: Props) {
     };
 
     const screenWidth = Dimensions.get('window').width;
-    const numPages = 3; 
+    const numPages = 3;
 
     const goToNextPage = () => {
         if (currentPage < numPages - 1) {
@@ -83,13 +84,22 @@ export function Presentation({ navigation }: Props) {
                 <CarouselScreenTwo />
                 <CarouselScreenThree navigation={navigation} />
             </ScrollView>
-            <View className="absolute bottom-4 left-0 right-0 flex flex-row justify-center items-center">
-                <TouchableOpacity onPress={goToPreviousPage}>
-                    <EvilIcons name="arrow-left" size={30} color="white" />
+
+            <View className="absolute bottom-4 right-[75%] flex flex-row justify-center items-center">
+                <TouchableOpacity onPress={goToPreviousPage}
+                    className='bg-black w-20 h-20 rounded-full items-center justify-center'
+                >
+                    <AntDesign name="arrowleft" size={24} color="white" />
                 </TouchableOpacity>
+            </View>
+            <View className="absolute bottom-4 left-0 right-0 flex flex-row justify-center items-center">
                 {renderPageIndicators()}
-                <TouchableOpacity onPress={goToNextPage}>
-                    <EvilIcons name="arrow-right" size={30} color="white" />
+            </View>
+            <View className="absolute bottom-4 left-[75%] flex flex-row justify-center items-center">
+                <TouchableOpacity onPress={goToNextPage}
+                    className='bg-black w-20 h-20 rounded-full items-center justify-center'
+                >
+                    <AntDesign name="arrowright" size={24} color="white" />
                 </TouchableOpacity>
             </View>
 
