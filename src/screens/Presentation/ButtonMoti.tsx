@@ -1,42 +1,58 @@
-import { useReducer } from 'react';
-import { StyleSheet, Pressable } from 'react-native';
-import { MotiView } from 'moti';
+import React, { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { FontAwesome6 } from '@expo/vector-icons';
 
-
-export function ButtonMoti() {
-  const [visible, toggle] = useReducer((s) => !s, true);
-
-  return (
-    <Pressable onPress={toggle}>
-      {visible && 
-        <MotiView
-        from={{
-          opacity: 1,
-          scale: 1,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 100,
-        }}
-        transition={{
-          type: 'timing',
-          duration: 2500,
-        }}
-        style={styles.shape}
-      />
-      }
-    </Pressable>
-  );
+interface ButtonMotiProps {
+  onPress?: () => void;
 }
 
-const styles = StyleSheet.create({
-  shape: {
-    justifyContent: 'center',
-    height: 80,
-    width: 80,
-    borderRadius: 100,
-    marginRight: 10,
-    backgroundColor: 'white',
-  },
-  
-});
+export function ButtonMoti({ onPress }: ButtonMotiProps) {
+  const scale = useSharedValue(1);
+  const [isButton, setIsButton] = useState(true);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      width: 70,
+      height: 70,
+      borderRadius: 50,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      transform: [
+        { scaleX: scale.value },
+        { scaleY: scale.value }
+      ],
+    };
+  });
+
+  const iconStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scaleX: 1 / scale.value },
+        { scaleY: 1 / scale.value }
+      ],
+    };
+  });
+
+  const handlePress = () => {
+    scale.value = withTiming(100, { duration: 1000 });
+    setTimeout(() => {
+      scale.value = withTiming(1, { duration: 1000 });
+    }, 1000);
+
+    if (onPress) {
+      onPress();
+    }
+  };
+
+  return (
+    <TouchableOpacity onPress={handlePress} disabled={!isButton}>
+      <Animated.View style={animatedStyle}>
+        <Animated.View style={iconStyle}>
+          <FontAwesome6 name="person-walking-arrow-right" size={24} color="black" />
+        </Animated.View>
+      </Animated.View>
+    </TouchableOpacity>
+  );
+};
