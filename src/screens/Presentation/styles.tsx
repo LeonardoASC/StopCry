@@ -51,6 +51,6 @@ export const PageIndicator = styled.View<PageIndicatorProps>`
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: ${props => props.active ? '#ff0000' : '#ccc'};
+    background-color: ${props => props.active ? '#fff' : '#a3a3a3'};
     margin: 5px;
 `;

@@ -19,7 +19,7 @@ const Screen = ({ children }: ScreenProps) => (
       width: ScreenWidth,
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'space-evenly'
     }}
   >
     {children}
@@ -30,13 +30,14 @@ export function CarouselScreen() {
   return (
     <Screen>
       <Image
-        className='w-72 h-72 bottom-28'
+        className='w-72 h-72'
         source={LogoStopCry}
       />
       <View className='flex-row'>
       <Text className='text-white font-bold text-5xl'>Stop</Text>
       <Text className='font-bold text-5xl'>Cry</Text>
       </View>
+      <Text className='text-[#c7c5c5] font-extralight'>Music for you poor fuck! :D </Text>
     </Screen>
   );
 }
