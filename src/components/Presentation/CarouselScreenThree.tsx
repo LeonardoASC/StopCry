@@ -18,22 +18,12 @@ const Screen = styled.View`
 
 interface CarouselScreenThreeProps {
   navigation: NavigationProp<RootStackParamList, 'Login'>;
-  scrollViewRef: React.RefObject<ScrollView>;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
+
 }
 
-export function CarouselScreenThree({ navigation, scrollViewRef, currentPage, setCurrentPage  }: CarouselScreenThreeProps) {
-
+export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
+ 
   const screenWidth = Dimensions.get('window').width;
-
-  const goToPreviousPage = () => {
-    if (currentPage > 0) {
-      const previousPage = currentPage - 1;
-      scrollViewRef.current?.scrollTo({ x: previousPage * screenWidth, animated: true });
-      setCurrentPage(previousPage);
-    }
-  };
 
   return (
     <Screen >
@@ -45,11 +35,7 @@ export function CarouselScreenThree({ navigation, scrollViewRef, currentPage, se
         <Text style={{ color: 'white', textAlign: 'center' }}>Ir para o Login</Text>
       </TouchableOpacity>
 
-      <View className="absolute bottom-4 right-[85%] flex flex-row justify-center items-center">
-        <TouchableOpacity onPress={goToPreviousPage}>
-          <Text className='text-white'>Back</Text>
-        </TouchableOpacity>
-      </View>
+      
     </Screen>
   );
 }

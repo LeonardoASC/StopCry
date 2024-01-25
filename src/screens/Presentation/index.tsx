@@ -1,86 +1,83 @@
 import React, { useRef, useState } from 'react';
-import { SafeAreaView, ScrollView, View, Dimensions, TouchableOpacity, Text, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import styled from 'styled-components/native';
+import { Container, ScreenContainer, PageIndicatorContainer, IndicatorsContainer, ButtonMotiContainer, PageIndicator, ButtonBackContainer } from "./styles"
 
+import { CarouselScreen } from '../../components/Presentation/CarouselScreen';
+import { CarouselScreenTwo } from '../../components/Presentation/CarouselScreenTwo';
+import { CarouselScreenThree } from '../../components/Presentation/CarouselScreenThree';
 import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigationTypes';
-
-import { CarouselScreen } from './CarouselScreen';
-import { CarouselScreenTwo } from './CarouselScreenTwo';
-import { CarouselScreenThree } from './CarouselScreenThree';
+import { ButtonMoti } from '../../components/Presentation/ButtonMoti';
+import { Text, TouchableOpacity } from 'react-native';
 
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Login'>;
 };
 
+
+
 export function Presentation({ navigation }: Props) {
-
+    const [currentScreen, setCurrentScreen] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
-    const scrollViewRef = useRef<ScrollView>(null);
 
-    const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const scrollPosition = event.nativeEvent.contentOffset.x;
-        const screenWidth = Dimensions.get('window').width;
-        const currentPageIndex = Math.round(scrollPosition / screenWidth);
-        setCurrentPage(currentPageIndex);
+    const screens = [
+        <CarouselScreen key="screen1" />,
+        <CarouselScreenTwo key="screen2" />,
+        <CarouselScreenThree
+            key="screen3"
+            navigation={navigation}
+        />
+    ];
+
+    const goNextScreen = () => {
+        setCurrentScreen((prevScreen) => {
+            const newScreen = (prevScreen + 1) % screens.length;
+            setCurrentPage(newScreen);
+            return newScreen;
+        });
     };
 
+    const goBackScreen = () => {
+        setCurrentScreen((prevScreen) => {
+            const newScreen = prevScreen - 1 < 0 ? screens.length - 1 : prevScreen - 1;
+            setCurrentPage(newScreen);
+            return newScreen;
+        });
+    };
 
     const renderPageIndicators = () => {
-        const indicators = [];
-        const numPages = 3; 
-
-        for (let i = 0; i < numPages; i++) {
-            indicators.push(
-                <View
-                    key={i}
-                    style={{
-                        height: 10,
-                        width: 10,
-                        borderRadius: 5,
-                        backgroundColor: currentPage === i ? 'white' : 'gray',
-                        margin: 5,
-                    }}
-                />
-            );
-        }
-        return indicators;
+        return screens.map((_, index) => (
+            <PageIndicator
+                key={index}
+                active={currentPage === index}
+            />
+        ));
     };
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView
-                ref={scrollViewRef}
-                horizontal
-                pagingEnabled
-                onScroll={handleScroll}
-                scrollEventThrottle={16}
-                showsHorizontalScrollIndicator={false}
-                scrollEnabled={false}
-            >
-                <CarouselScreen 
-                    scrollViewRef={scrollViewRef} 
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    />
-                <CarouselScreenTwo 
-                    scrollViewRef={scrollViewRef} 
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                />
-                <CarouselScreenThree 
-                    navigation={navigation} 
-                    scrollViewRef={scrollViewRef} 
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    />
-            </ScrollView>
-
-            <View className="absolute bottom-4 left-0 right-0 flex flex-row justify-center items-center">
-                {renderPageIndicators()}
-            </View>
-
-
-        </SafeAreaView>
-    )
+        <Container>
+            <ScreenContainer>
+                {screens[currentScreen]}
+            </ScreenContainer>
+            <PageIndicatorContainer>
+                {currentScreen > 0 && (
+                    <ButtonBackContainer>
+                        <TouchableOpacity onPress={goBackScreen}>
+                            <Text className='text-white'>Back</Text>
+                        </TouchableOpacity>
+                    </ButtonBackContainer>
+                )}
+                <IndicatorsContainer>
+                    {renderPageIndicators()}
+                </IndicatorsContainer>
+                {currentScreen < screens.length - 1 && (
+                    <ButtonMotiContainer>
+                        <ButtonMoti onPress={goNextScreen} />
+                    </ButtonMotiContainer>
+                )}
+            </PageIndicatorContainer>
+        </Container>
+    );
 }
+
