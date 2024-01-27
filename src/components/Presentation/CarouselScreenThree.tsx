@@ -1,20 +1,27 @@
-import React, { useRef, useState } from 'react';
-import { Text, Dimensions, TouchableOpacity, ScrollView, View } from 'react-native';
-import styled from 'styled-components/native';
+import React, { ReactNode } from 'react';
+import { Text, Dimensions, TouchableOpacity } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigationTypes';
-import { AntDesign } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ScreenWidth = Dimensions.get('window').width;
 
-
-const Screen = styled.View`
-  width: ${ScreenWidth}px;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background-color: #1DB954;
-`;
+interface ScreenProps {
+  children: ReactNode;
+}
+const Screen = ({ children }: ScreenProps) => (
+  <LinearGradient
+    colors={['#0b2701', '#1DB954']} 
+    style={{
+      width: ScreenWidth,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'space-evenly'
+    }}
+  >
+    {children}
+  </LinearGradient>
+);
 
 interface CarouselScreenThreeProps {
   navigation: NavigationProp<RootStackParamList, 'Login'>;

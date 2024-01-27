@@ -38,7 +38,7 @@ export function ButtonMoti({ onPress }: ButtonMotiProps) {
   const handlePress = () => {
     scale.value = withTiming(100, { duration: 1000 });
     setTimeout(() => {
-      scale.value = withTiming(1, { duration: 1000 });
+      scale.value = withTiming(1, { duration: 450 });
     }, 1000);
 
     if (onPress) {

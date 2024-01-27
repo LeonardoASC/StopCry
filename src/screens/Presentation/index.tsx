@@ -31,12 +31,15 @@ export function Presentation({ navigation }: Props) {
     ];
 
     const goNextScreen = () => {
-        setCurrentScreen((prevScreen) => {
-            const newScreen = (prevScreen + 1) % screens.length;
-            setCurrentPage(newScreen);
-            return newScreen;
-        });
+        setTimeout(() => {
+            setCurrentScreen((prevScreen) => {
+                const newScreen = (prevScreen + 1) % screens.length;
+                setCurrentPage(newScreen);
+                return newScreen;
+            });
+        }, 1000);
     };
+    
 
     const goBackScreen = () => {
         setCurrentScreen((prevScreen) => {
