@@ -1,25 +1,28 @@
-import React, { ReactNode, useRef, useState } from 'react';
-import { Text, Dimensions, View, TouchableOpacity, ScrollView } from 'react-native';
+import React, { ReactNode, useRef, useEffect } from 'react';
+import { Text, Dimensions, View, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'react-native';
 import LogoStopCry from '../../../assets/stopcry.png';
-
 
 const ScreenWidth = Dimensions.get('window').width;
 
 interface ScreenProps {
   children: ReactNode;
 }
+const AnimatedView = styled(Animated.View)`
+  background-color: white;
+  border-radius: 200px;
+`;
 
 const Screen = ({ children }: ScreenProps) => (
   <LinearGradient
-    colors={['#0b2701', '#1DB954']} 
+    colors={['#0b2701', '#1DB954']}
     style={{
       width: ScreenWidth,
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'space-evenly'
+      justifyContent: 'center'
     }}
   >
     {children}
@@ -27,17 +30,41 @@ const Screen = ({ children }: ScreenProps) => (
 );
 
 export function CarouselScreen() {
+  const paddingAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    const animatePadding = () => {
+      Animated.sequence([
+        Animated.timing(paddingAnim, {
+          toValue: 5,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(paddingAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+      ]).start(() => animatePadding());
+    };
+
+    animatePadding();
+  }, [paddingAnim]);
+
   return (
     <Screen>
-      <Image
-        className='w-72 h-72'
-        source={LogoStopCry}
-      />
-      <View className='flex-row'>
-      <Text className='text-white font-bold text-5xl'>Stop</Text>
-      <Text className='font-bold text-5xl'>Cry</Text>
+      <AnimatedView
+        style={{ padding: paddingAnim }}
+      >
+        <Image
+          className='w-72 h-72'
+          source={LogoStopCry}
+        />
+      </AnimatedView>
+      <View className='flex-row mt-10 shadow'>
+        <Text className='text-white font-bold text-5xl'>Stop</Text>
+        <Text className='font-bold text-5xl text-green-950 '>Cry</Text>
       </View>
-      <Text className='text-[#c7c5c5] font-extralight'>Music for you poor fuck! :D </Text>
     </Screen>
   );
 }

@@ -12,12 +12,12 @@ interface ScreenProps {
 
 const Screen = ({ children }: ScreenProps) => (
   <LinearGradient
-    colors={['#0b2701', '#1DB954']} 
+    colors={['#0b2701', '#1DB954']}
     style={{
       width: ScreenWidth,
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'space-evenly'
+      justifyContent: 'space-between'
     }}
   >
     {children}
@@ -29,11 +29,12 @@ const Screen = ({ children }: ScreenProps) => (
 
 export function CarouselScreenTwo() {
   return (
-    <Screen >
-      <Text>oi</Text>
-      
-      <View className="absolute bottom-4 left-[75%] flex flex-row justify-center items-center">
-  
+    <Screen>
+      <View className="w-full h-[40%] flex-row">
+        
+      </View>
+      <View className="bg-black w-full h-[60%] flex-row rounded-t-full items-center justify-center">
+        <Text className='text-gray-400'>Music for you poor fuck!</Text>
       </View>
     </Screen>
   );
