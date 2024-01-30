@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'react-native';
 import LogoStopCry from '../../../assets/stopcry.png';
+import CyberButton from 'react-native-cyberpunk-button';
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -16,8 +17,9 @@ const AnimatedView = styled(Animated.View)`
 `;
 
 const Screen = ({ children }: ScreenProps) => (
+  
   <LinearGradient
-    colors={['#0b2701', '#1DB954']}
+    colors={['#1BB040', '#1BB040']}
     style={{
       width: ScreenWidth,
       flex: 1,
@@ -62,8 +64,9 @@ export function CarouselScreen() {
         />
       </AnimatedView>
       <View className='flex-row mt-10 shadow'>
-        <Text className='text-white font-bold text-5xl'>Stop</Text>
-        <Text className='font-bold text-5xl text-green-950 '>Cry</Text>
+        {/* <Text className='text-white font-bold text-5xl'>Stop</Text>
+        <Text className='font-bold text-5xl text-green-950 '>Cry</Text> */}
+        <CyberButton label="StopCry_" mainColor="#" shadowColor="#fff" />
       </View>
     </Screen>
   );

@@ -34,21 +34,21 @@ export function Login({ navigation }: Props) {
             />
 
             <TouchableOpacity className="w-full mb-2">
-                <Text className="text-[#1DB954] text-lg py-2 px-5 rounded-lg text-center">Login</Text>
+                <Text className="text-[#1BB040] text-lg py-2 px-5 rounded-lg text-center">Login</Text>
             </TouchableOpacity>
 
             <View className="flex-row justify-between w-full">
                 <TouchableOpacity onPress={() => { }}>
-                    <Text className="text-[#1DB954] mb-4">Ainda não é usuário?</Text>
+                    <Text className="text-[#1BB040] mb-4">Ainda não é usuário?</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => {  }}>
-                    <Text className="text-[#1DB954] mb-4">Esqueceu a senha?</Text>
+                    <Text className="text-[#1BB040] mb-4">Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
 
             <TouchableOpacity onPress={() => navigation.navigate('Presentation')}>
-                <Text className="text-[#1DB954] text-lg py-2 px-5 rounded-full border border-[#1DB954] text-center">Back to Presentation</Text>
+                <Text className="text-[#1BB040] text-lg py-2 px-5 rounded-full border border-[#1BB040] text-center">Back to Presentation</Text>
             </TouchableOpacity>
         </SafeAreaView>
     )

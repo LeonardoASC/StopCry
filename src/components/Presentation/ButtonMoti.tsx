@@ -50,7 +50,7 @@ export function ButtonMoti({ onPress }: ButtonMotiProps) {
     <TouchableOpacity onPress={handlePress} disabled={!isButton}>
       <Animated.View style={animatedStyle}>
         <Animated.View style={iconStyle}>
-          <FontAwesome6 name="person-walking-arrow-right" size={24} color="#1DB954" />
+          <FontAwesome6 name="person-walking-arrow-right" size={24} color="#1BB040" />
         </Animated.View>
       </Animated.View>
     </TouchableOpacity>

@@ -11,7 +11,7 @@ interface ScreenProps {
 }
 const Screen = ({ children }: ScreenProps) => (
   <LinearGradient
-    colors={['#0b2701', '#1DB954']} 
+    colors={['#1BB040', '#1BB040']} 
     style={{
       width: ScreenWidth,
       flex: 1,
