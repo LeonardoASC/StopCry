@@ -100,21 +100,22 @@ export function CarouselScreenTwo() {
 
   return (
     <Screen>
-      <View className="w-full h-[40%] items-end ">
+      <View className="w-full h-[40%] flex items-center justify-center ">
         <LottieView
           source={PersonFuckMusic}
-          // style={{width: "100%", height: "100%", backgroundColor: 'white', top: 0, left: 0, right:0}}
+          style={{height: '100%', width: 'auto'}}
           autoPlay
           loop
         />
 
       </View>
-      <View className=" w-[60%] h-[40%] rounded-t-full items-center text-center">
+      <View className=" w-[100%] h-[40%] rounded-t-full items-center text-center">
       <Animated.Text
         style={{
           transform: [{ translateX: firstPhraseAnim }],
           color: '#fff', 
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          fontSize: 20
         }}
       >
         Music for you, poor fuck! :D
@@ -123,7 +124,9 @@ export function CarouselScreenTwo() {
         style={{
           transform: [{ translateX: slideAnim }],
           color: '#dfdfdf',
-          textAlign: 'center', margin: 10
+          textAlign: 'center', 
+          margin: 10,
+          width:'50%'
         }}
       >
         {phrases[index]}
