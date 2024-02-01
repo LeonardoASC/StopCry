@@ -24,7 +24,7 @@ const TriangleCorner = styled.View`
   border-right-width: ${ScreenWidth * 1.02}px;
   border-top-width: ${ScreenHeight * 1.02}px;
   border-right-color: transparent;
-  border-top-color: yellow;
+  border-top-color: #1f1f1e;
   position: absolute; 
   top: 0; 
   left:  -300px; 
@@ -39,7 +39,7 @@ const TriangleCornerBottomRight = styled.View`
   border-left-width: ${ScreenWidth * 1.02}px; 
   border-bottom-width: ${ScreenHeight * 1.02}px; 
   border-left-color: transparent; 
-  border-bottom-color: white; 
+  border-bottom-color: #1BB040; 
   position: absolute; 
   bottom: 0; 
   right: -300px; 
@@ -48,10 +48,9 @@ const TriangleCornerBottomRight = styled.View`
 const AnimatedTriangleCornerBottomRight = Animated.createAnimatedComponent(TriangleCornerBottomRight);
 
 
-
 const Screen = ({ children }: ScreenProps) => (
   <LinearGradient
-    colors={['#1BB040', '#1BB040']}
+    colors={['#fff', '#fff']}
     style={{
       flex: 1,
       flexDirection: 'row',
@@ -68,7 +67,6 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
   const slideAnimRight = useRef(new Animated.Value(ScreenWidth)).current;
 
   useEffect(() => {
-
 
     Animated.parallel([
       Animated.timing(TriangleTop, {
@@ -106,14 +104,14 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
       <Animated.Text style={{
         transform: [{ translateX: slideAnimLeft }],
         position: 'absolute',
-        color: 'black',
+        color: 'white',
         top: '40%',
         left: 50,
       }}>Texto 1</Animated.Text>
       <Animated.Text style={{
         transform: [{ translateX: slideAnimRight }],
         position: 'absolute',
-        color: 'black',
+        color: 'white',
         bottom: '40%',
         right: 50,
       }}>Texto 2</Animated.Text>
