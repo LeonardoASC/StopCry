@@ -3,7 +3,7 @@ import { Text, Dimensions, View, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'react-native';
-import LogoStopCry from '../../../assets/stopcry.png';
+import LogoStopCry from '../../../../assets/stopcry.png';
 import CyberButton from 'react-native-cyberpunk-button';
 
 const ScreenWidth = Dimensions.get('window').width;

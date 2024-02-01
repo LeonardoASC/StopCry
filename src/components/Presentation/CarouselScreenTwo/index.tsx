@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, Dimensions, View, Animated } from 'react-native';
+import { Dimensions, View, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
-import PersonMusic from '../../../assets/Lotties/PersonMusic.json'
-import PersonFuckMusic from '../../../assets/Lotties/PersonFuckMusic.json'
+import PersonFuckMusic from '../../../../assets/Lotties/PersonFuckMusic.json'
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -30,7 +29,7 @@ const Screen = ({ children }: ScreenProps) => (
 
 export function CarouselScreenTwo() {
   const firstPhraseAnim = useRef(new Animated.Value(-ScreenWidth)).current;
-  const slideAnim = useRef(new Animated.Value(-ScreenWidth)).current; // Começa fora da tela
+  const slideAnim = useRef(new Animated.Value(-ScreenWidth)).current; 
   const [index, setIndex] = useState(0);
 
   const phrases = [
@@ -52,7 +51,6 @@ export function CarouselScreenTwo() {
   ];
 
   useEffect(() => {
-   
     Animated.sequence([
       Animated.timing(firstPhraseAnim, {
         toValue: 20,
@@ -60,41 +58,34 @@ export function CarouselScreenTwo() {
         useNativeDriver: true
       }),
       Animated.timing(firstPhraseAnim, {
-        toValue: 0, // Volta para o centro
-        duration: 500, // Duração em milissegundos
+        toValue: 0, 
+        duration: 500, 
         useNativeDriver: true
       }),
     ]).start();
   
-    // Reinicia o valor da animação para a segunda frase
     slideAnim.setValue(-ScreenWidth);
   
-    // Animação para a segunda frase
     Animated.sequence([
-      // Animação para deslizar para dentro da tela
       Animated.timing(slideAnim, {
         toValue: 10,
         duration: 1000,
         useNativeDriver: true
       }),
       Animated.timing(slideAnim, {
-        toValue: 0, // Volta para o centro
-        duration: 500, // Duração em milissegundos
+        toValue: 0, 
+        duration: 500, 
         useNativeDriver: true
       }),
-      // Tempo para ler a frase
       Animated.delay(2000),
-      // Animação para deslizar para fora da tela, para a direita
       Animated.timing(slideAnim, {
         toValue: ScreenWidth,
         duration: 1000,
         useNativeDriver: true
       }),
     ]).start(() => {
-      // Ao terminar, atualiza para a próxima frase e reinicia a posição da animação
       setIndex((prevIndex) => (prevIndex + 1) % phrases.length);
     });
-  
   }, [index, slideAnim]);
   
 
