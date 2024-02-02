@@ -1,7 +1,6 @@
 import React, { ReactNode, useRef, useEffect, useState } from 'react';
-import { Text, Dimensions, View, Animated } from 'react-native';
+import { Dimensions, View, Animated } from 'react-native';
 import styled from 'styled-components/native';
-// import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'react-native';
 import LogoStopCry from '../../../../assets/stopcry.png';
 import CyberButton from 'react-native-cyberpunk-button';
@@ -12,11 +11,7 @@ const ScreenWidth = Dimensions.get('window').width;
 interface ScreenProps {
   children: ReactNode;
 }
-interface LightProps {
-  colors: string[];
-  start: { x: number; y: number };
-  end: { x: number; y: number };
-}
+
 const AnimatedView = styled(Animated.View)`
   background-color: white;
   border-radius: 200px;
@@ -57,7 +52,7 @@ export function CarouselScreen() {
       ]).start(() => animatePadding());
     };
     animatePadding();
-  
+
     // Animation for blinking
     const blinking = Animated.loop(
       Animated.sequence([
@@ -89,45 +84,45 @@ export function CarouselScreen() {
       ])
     );
     blinking.start();
-  
+
     // Cleanup function
     return () => {
       blinking.stop();
     };
-  }, [paddingAnim, opacity]); 
-  
+  }, [paddingAnim, opacity]);
+
 
   return (
     <Screen>
       <View style={{ position: 'absolute', top: 0 }}>
-      <Animated.View style={{ opacity }}>
-        <Svg
-          width={350}
-          height={350}
-          viewBox="0 0 701 626"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <Animated.View style={{ opacity }}>
+          <Svg
+            width={350}
+            height={350}
+            viewBox="0 0 701 626"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
 
-        >
-          <Path
-            d="M170.5 0h361L701 626H0L170.5 0z"
-            fill="url(#paint0_linear_106_2)"
-          />
-          <Defs>
-            <LinearGradient
-              id="paint0_linear_106_2"
-              x1={350.5}
-              y1={0}
-              x2={350.5}
-              y2={626}
-              gradientUnits="userSpaceOnUse"
-            >
-              <Stop stopColor="#E8FFE8" />
-              <Stop offset={1} stopColor="#02330E" />
-            </LinearGradient>
-          </Defs>
-        </Svg>
-      </Animated.View>
+          >
+            <Path
+              d="M170.5 0h361L701 626H0L170.5 0z"
+              fill="url(#paint0_linear_106_2)"
+            />
+            <Defs>
+              <LinearGradient
+                id="paint0_linear_106_2"
+                x1={350.5}
+                y1={0}
+                x2={350.5}
+                y2={626}
+                gradientUnits="userSpaceOnUse"
+              >
+                <Stop stopColor="#E8FFE8" />
+                <Stop offset={1} stopColor="#02330E" />
+              </LinearGradient>
+            </Defs>
+          </Svg>
+        </Animated.View>
       </View>
       <AnimatedView
         style={{ padding: paddingAnim }}
