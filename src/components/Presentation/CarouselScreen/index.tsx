@@ -1,15 +1,21 @@
-import React, { ReactNode, useRef, useEffect } from 'react';
+import React, { ReactNode, useRef, useEffect, useState } from 'react';
 import { Text, Dimensions, View, Animated } from 'react-native';
 import styled from 'styled-components/native';
-import { LinearGradient } from 'expo-linear-gradient';
+// import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'react-native';
 import LogoStopCry from '../../../../assets/stopcry.png';
 import CyberButton from 'react-native-cyberpunk-button';
-
+import Svg, { Path, Defs, Stop } from "react-native-svg"
+import { LinearGradient } from 'react-native-svg';
 const ScreenWidth = Dimensions.get('window').width;
 
 interface ScreenProps {
   children: ReactNode;
+}
+interface LightProps {
+  colors: string[];
+  start: { x: number; y: number };
+  end: { x: number; y: number };
 }
 const AnimatedView = styled(Animated.View)`
   background-color: white;
@@ -17,24 +23,25 @@ const AnimatedView = styled(Animated.View)`
 `;
 
 const Screen = ({ children }: ScreenProps) => (
-  
-  <LinearGradient
-    colors={['#1BB040', '#1BB040']}
+  <View
     style={{
+      backgroundColor: '#02330e',
       width: ScreenWidth,
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     }}
   >
     {children}
-  </LinearGradient>
+  </View>
 );
 
 export function CarouselScreen() {
   const paddingAnim = useRef(new Animated.Value(1)).current;
+  const [opacity] = useState(new Animated.Value(1));
 
   useEffect(() => {
+    // Animation for padding
     const animatePadding = () => {
       Animated.sequence([
         Animated.timing(paddingAnim, {
@@ -49,12 +56,79 @@ export function CarouselScreen() {
         }),
       ]).start(() => animatePadding());
     };
-
     animatePadding();
-  }, [paddingAnim]);
+  
+    // Animation for blinking
+    const blinking = Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 100,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+    blinking.start();
+  
+    // Cleanup function
+    return () => {
+      blinking.stop();
+    };
+  }, [paddingAnim, opacity]); 
+  
 
   return (
     <Screen>
+      <View style={{ position: 'absolute', top: 0 }}>
+      <Animated.View style={{ opacity }}>
+        <Svg
+          width={350}
+          height={350}
+          viewBox="0 0 701 626"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+
+        >
+          <Path
+            d="M170.5 0h361L701 626H0L170.5 0z"
+            fill="url(#paint0_linear_106_2)"
+          />
+          <Defs>
+            <LinearGradient
+              id="paint0_linear_106_2"
+              x1={350.5}
+              y1={0}
+              x2={350.5}
+              y2={626}
+              gradientUnits="userSpaceOnUse"
+            >
+              <Stop stopColor="#E8FFE8" />
+              <Stop offset={1} stopColor="#02330E" />
+            </LinearGradient>
+          </Defs>
+        </Svg>
+      </Animated.View>
+      </View>
       <AnimatedView
         style={{ padding: paddingAnim }}
       >
@@ -64,8 +138,6 @@ export function CarouselScreen() {
         />
       </AnimatedView>
       <View className='flex-row mt-10 shadow'>
-        {/* <Text className='text-white font-bold text-5xl'>Stop</Text>
-        <Text className='font-bold text-5xl text-green-950 '>Cry</Text> */}
         <CyberButton label="StopCry_" mainColor="#" shadowColor="#fff" />
       </View>
     </Screen>

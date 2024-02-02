@@ -1,10 +1,10 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
-import { Dimensions, Animated, Text } from 'react-native';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import { Dimensions, Animated, Text, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../../navigationTypes';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
-
+import { BtnGoToLogin } from '../BtnGoToLogin';
 const ScreenWidth = Dimensions.get('window').width;
 const ScreenHeight = Dimensions.get('window').height;
 
@@ -65,7 +65,7 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
   const TriangleBottom = useRef(new Animated.Value(0)).current;
   const slideAnimLeft = useRef(new Animated.Value(-ScreenWidth)).current;
   const slideAnimRight = useRef(new Animated.Value(ScreenWidth)).current;
-
+  const [showView, setShowView] = useState(false);
   useEffect(() => {
 
     Animated.parallel([
@@ -91,6 +91,11 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
         useNativeDriver: true
       }),
     ]).start();
+    const timer = setTimeout(() => {
+      setShowView(true); // Após 3 segundos, atualiza o estado para mostrar a View
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -115,6 +120,19 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
         bottom: '40%',
         right: 50,
       }}>Texto 2</Animated.Text>
+      {showView && (
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <BtnGoToLogin />
+        </View>
+      )}
     </Screen>
   );
 }
