@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 export function BtnGoToLogin() {
   const [animation, setAnimation] = useState(new Animated.Value(0));
@@ -63,16 +64,25 @@ export function BtnGoToLogin() {
   });
 
   return (
-      <Animated.View
-          style={[{ width, height, borderRadius, backgroundColor: 'tomato' },{ transform: [{ rotate: rotationInterpolate }]}]}
+      <Animated.View style={[{ width, height, borderRadius, backgroundColor: 'white' },{ transform: [{ rotate: rotationInterpolate }]}]}
         >
         <TouchableOpacity
           style={{  justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}
           onPress={() => console.log('TouchableOpacity pressionado')}>
-          <Animated.Text style={{ transform: [{ scale: textScale }], color: 'white'}}>
-            oi
-          </Animated.Text>
-          <Animated.Text style={{ opacity: textOpacity, position: 'absolute', color: 'white' }}>
+          <Animated.View style={{ transform: [{ scale: textScale }]}}>
+            <FontAwesome name="music" size={30} color="#00ff22" />
+          </Animated.View>
+          <Animated.Text 
+            style={{ 
+              opacity: textOpacity,
+              position: 'absolute',
+              color: '#00ff22',
+              fontWeight: 'bold',
+              fontSize: 20,
+              fontStyle: 'italic',
+              letterSpacing: 5,
+              textAlign: 'center'
+              }}>
           Let's Get Started!
           </Animated.Text>
         </TouchableOpacity>

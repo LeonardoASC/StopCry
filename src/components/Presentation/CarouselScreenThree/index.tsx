@@ -128,7 +128,7 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
         fontSize: 20,
         fontStyle: 'italic',
         letterSpacing: 5
-      }}>Musica 100% gratis com playlist personalizada e musica compartilhada!</Animated.Text>
+      }}>Enjoy 100% free music with customized playlists and shared tunes!</Animated.Text>
       <Animated.Text style={{
         transform: [{ translateX: slideAnimRight }],
         position: 'absolute',
@@ -142,9 +142,7 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
         fontStyle: 'italic',
         borderRadius: 10,
         letterSpacing: 5
-      }}>
-
-        Anuncios minimamente intrusivos e sem bloquear funções!</Animated.Text>
+      }}>Experience minimally intrusive ads that don't block your features!</Animated.Text>
       {showView && (
         <View
           style={{
