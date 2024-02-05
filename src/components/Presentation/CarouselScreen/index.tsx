@@ -85,7 +85,7 @@ export function CarouselScreen() {
     );
     blinking.start();
 
-    // Cleanup function
+    
     return () => {
       blinking.stop();
     };

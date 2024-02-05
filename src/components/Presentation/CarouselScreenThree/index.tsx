@@ -5,6 +5,10 @@ import { RootStackParamList } from '../../../../navigationTypes';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 import { BtnGoToLogin } from '../BtnGoToLogin';
+import { Svg, Path } from 'react-native-svg';
+import { SvgBgOne } from "../../../../assets/Svg/SvgBgOne"
+import { SvgBgTwo } from '../../../../assets/Svg/SvgBgTwo';
+
 const ScreenWidth = Dimensions.get('window').width;
 const ScreenHeight = Dimensions.get('window').height;
 
@@ -43,7 +47,7 @@ const TriangleCornerBottomRight = styled.View`
   position: absolute; 
   bottom: 0; 
   right: -300px; 
-  display: flex;
+  /* display: flex; */
   `;
 const AnimatedTriangleCornerBottomRight = Animated.createAnimatedComponent(TriangleCornerBottomRight);
 
@@ -92,7 +96,7 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
       }),
     ]).start();
     const timer = setTimeout(() => {
-      setShowView(true); // Após 3 segundos, atualiza o estado para mostrar a View
+      setShowView(true);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -103,23 +107,44 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
       <AnimatedTriangleCorner
         style={{ transform: [{ translateX: TriangleTop }] }}>
       </AnimatedTriangleCorner>
+      <View style={{ opacity: 0.6}}>
+        <SvgBgOne />
+      </View>
       <AnimatedTriangleCornerBottomRight
         style={{ transform: [{ translateX: TriangleBottom }] }}>
       </AnimatedTriangleCornerBottomRight>
+      <View style={{right: '30%', top: '100%', opacity: 0.2}}>
+        <SvgBgTwo />
+      </View>
       <Animated.Text style={{
         transform: [{ translateX: slideAnimLeft }],
         position: 'absolute',
         color: 'white',
-        top: '40%',
-        left: 50,
-      }}>Texto 1</Animated.Text>
+        top: '20%',
+        left: '5%',
+        textAlign: 'left',
+        width: '60%',
+        fontWeight: 'bold',
+        fontSize: 20,
+        fontStyle: 'italic',
+        letterSpacing: 5
+      }}>Musica 100% gratis com playlist personalizada e musica compartilhada!</Animated.Text>
       <Animated.Text style={{
         transform: [{ translateX: slideAnimRight }],
         position: 'absolute',
         color: 'white',
-        bottom: '40%',
-        right: 50,
-      }}>Texto 2</Animated.Text>
+        bottom: '20%',
+        right: '5%',
+        textAlign: 'right',
+        width: '60%',
+        fontWeight: 'bold',
+        fontSize: 20,
+        fontStyle: 'italic',
+        borderRadius: 10,
+        letterSpacing: 5
+      }}>
+
+        Anuncios minimamente intrusivos e sem bloquear funções!</Animated.Text>
       {showView && (
         <View
           style={{
