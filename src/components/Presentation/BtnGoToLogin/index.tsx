@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, TouchableOpacity } from 'react-native';
+import { Animated, TouchableOpacity, Platform } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export function BtnGoToLogin() {
@@ -64,8 +64,10 @@ export function BtnGoToLogin() {
   });
 
   return (
-      <Animated.View style={[{ width, height, borderRadius, backgroundColor: 'white' },{ transform: [{ rotate: rotationInterpolate }]}]}
-        >
+      <Animated.View style={[
+        { width, height, borderRadius, backgroundColor: 'white'},
+        { transform: [{ rotate: rotationInterpolate }]}
+      ]}>
         <TouchableOpacity
           style={{  justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}
           onPress={() => console.log('TouchableOpacity pressionado')}>
@@ -81,7 +83,14 @@ export function BtnGoToLogin() {
               fontSize: 20,
               fontStyle: 'italic',
               letterSpacing: 5,
-              textAlign: 'center'
+              textAlign: 'center',
+              shadowColor: '#000', 
+              shadowOffset: { width: 10, height: 40 }, 
+              shadowOpacity: 0.3, 
+              shadowRadius: 5, 
+              textShadowColor: '#000', 
+              textShadowOffset: { width: 2, height: 2 }, 
+              textShadowRadius: 1,
               }}>
           Let's Get Started!
           </Animated.Text>
