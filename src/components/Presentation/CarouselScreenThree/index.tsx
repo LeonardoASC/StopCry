@@ -153,7 +153,7 @@ export function CarouselScreenThree({ navigation }: CarouselScreenThreeProps) {
             justifyContent: 'center',
           }}
         >
-          <BtnGoToLogin />
+          <BtnGoToLogin onPress={() => navigation.navigate('Login')}/>
         </View>
       )}
     </Screen>

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, TouchableOpacity, Platform } from 'react-native';
+import { Animated, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-export function BtnGoToLogin() {
+interface BtnGoToLoginProps {
+  onPress: (event: GestureResponderEvent) => void;
+}
+
+export function BtnGoToLogin({ onPress }: BtnGoToLoginProps) {
   const [animation, setAnimation] = useState(new Animated.Value(0));
   const [rotation, setRotation] = useState(new Animated.Value(0));
   const [textScale, setTextScale] = useState(new Animated.Value(1)); 
@@ -70,7 +74,7 @@ export function BtnGoToLogin() {
       ]}>
         <TouchableOpacity
           style={{  justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}
-          onPress={() => console.log('TouchableOpacity pressionado')}>
+          onPress={onPress}>
           <Animated.View style={{ transform: [{ scale: textScale }]}}>
             <FontAwesome name="music" size={30} color="#00ff22" />
           </Animated.View>
