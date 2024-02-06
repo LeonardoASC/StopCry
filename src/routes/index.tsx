@@ -5,7 +5,7 @@ import Private from "./Private";
 
 export function Routes() {
 
-  let whoRoutes = 0;
+  let whoRoutes = 1;
   return (
     <NavigationContainer>
       {whoRoutes === 0 ? <Public /> : <Private />}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../../navigationTypes';
-import CustomInput from '../../components/Inputs/CustomInput';
+import { RootStackParamList } from '../../../../navigationTypes';
+import CustomInput from '../../../components/Inputs/CustomInput';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Presentation'>;

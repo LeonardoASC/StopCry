@@ -2,12 +2,12 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components/native';
 import { Container, ScreenContainer, PageIndicatorContainer, IndicatorsContainer, ButtonMotiContainer, PageIndicator, ButtonBackContainer } from "./styles"
 
-import { CarouselScreen } from '../../components/Presentation/CarouselScreen';
-import { CarouselScreenTwo } from '../../components/Presentation/CarouselScreenTwo';
-import { CarouselScreenThree } from '../../components/Presentation/CarouselScreenThree';
+import { CarouselScreen } from '../../../components/Presentation/CarouselScreen';
+import { CarouselScreenTwo } from '../../../components/Presentation/CarouselScreenTwo';
+import { CarouselScreenThree } from '../../../components/Presentation/CarouselScreenThree';
 import { NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../../navigationTypes';
-import { ButtonMoti } from '../../components/Presentation/ButtonMoti';
+import { RootStackParamList } from '../../../../navigationTypes';
+import { ButtonMoti } from '../../../components/Presentation/ButtonMoti';
 import { Text, TouchableOpacity } from 'react-native';
 
 
