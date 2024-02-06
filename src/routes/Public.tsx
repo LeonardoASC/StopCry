@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export default function Public() {
   return (
     <Stack.Navigator
-    initialRouteName="Presentation"
+    initialRouteName="Login"
       screenOptions={{
         headerShown: false
       }}

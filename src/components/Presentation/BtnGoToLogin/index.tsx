@@ -3,14 +3,13 @@ import { Animated, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
 interface BtnGoToLoginProps {
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
 export function BtnGoToLogin({ onPress }: BtnGoToLoginProps) {
   const [animation, setAnimation] = useState(new Animated.Value(0));
   const [rotation, setRotation] = useState(new Animated.Value(0));
   const [textScale, setTextScale] = useState(new Animated.Value(1)); 
-  const [showView, setShowView] = useState(false);
 
   useEffect(() => {
     const startAnimation = () => {
